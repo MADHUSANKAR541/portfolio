@@ -52,9 +52,9 @@ export default function Contact() {
             <div className="contact__grid">
               {/* Contact Information */}
               <div className="contact__info slide-up">
-                <h2>Let's Connect</h2>
+                <h2>Let&apos;s Connect</h2>
                 <p className="contact__description">
-                  I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                  I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                 </p>
 
                 <div className="contact__details">

@@ -9,7 +9,7 @@ export default function AboutSection(props: { id?: string; dataAos?: string }) {
           <div className="about__grid">
             <div className="about__text slide-up" style={{ animationDelay: '0.2s' }}>
               <p>
-                I'm a passionate AI & Full-Stack Developer with a strong focus on creating
+                I&apos;m a passionate AI & Full-Stack Developer with a strong focus on creating
                 intelligent and user-friendly applications. My journey in technology has
                 been driven by a deep curiosity about how we can leverage AI and modern
                 web technologies to solve real-world problems.

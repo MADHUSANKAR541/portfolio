@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const projectsData = [
   {
@@ -88,7 +89,13 @@ export default function ProjectsSection(props: { id?: string; dataAos?: string }
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
             >
               <div className="project-card__image">
-                <img src={project.image} alt={project.title} />
+                <Image 
+                  src={project.image} 
+                  alt={project.title}
+                  width={400}
+                  height={300}
+                  style={{ objectFit: 'cover' }}
+                />
                 <div className="project-card__overlay">
                   <div className="project-card__links">
                     <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">

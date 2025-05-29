@@ -5,7 +5,6 @@ import SkillsSection from '@/app/skills/SkillsSection';
 import ProjectsSection from '@/app/projects/ProjectsSection';
 import ExperienceSection from '@/app/experience/ExperienceSection';
 import AchievementsSection from '@/app/achievements/AchievementsSection';
-import CertificationsSection from '@/app/certifications/CertificationsSection';
 import EducationSection from '@/app/education/EducationSection';
 import ContactSection from '@/app/contact/ContactSection';
 
@@ -50,14 +49,13 @@ export default function Home() {
         {/* Education Section */}
         <EducationSection id="education" dataAos="fade-up" />
         {/* Contact Section */}
+        <ContactSection id="contact" dataAos="fade-up" />
         {/* Skills Section */}
         <SkillsSection id="skills" dataAos="fade-left" />
         {/* Projects Section */}
         <ProjectsSection id="projects" dataAos="zoom-in-up" />
         {/* Experience Section */}
         <ExperienceSection id="experience" dataAos="fade-up" />
-        
-        <ContactSection id="contact" dataAos="fade-up" />
       </main>
     </>
   );
