@@ -6,7 +6,7 @@ const projectsData = [
     title: 'Taskify',
     description: 'Full-stack task management application with advanced search capabilities.',
     technologies: ['React', 'Next.js', 'Elasticsearch'],
-    image: 'https://via.placeholder.com/400x300?text=Taskify',
+    image: 'https://postimg.cc/kB8f1TS6',
     category: 'Full-Stack',
     link: 'https://todoapp-plum-seven.vercel.app/',
     github: '#'
