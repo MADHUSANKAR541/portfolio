@@ -1,0 +1,66 @@
+.button {
+  @include button-base;
+  
+  // Primary button
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+    border: none;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+
+  // Secondary button
+  &--secondary {
+    background-color: transparent;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+
+  // Outline button
+  &--outline {
+    background-color: transparent;
+    color: $text-color;
+    border: 1px solid $border-color;
+
+    &:hover {
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+  }
+
+  // Sizes
+  &--sm {
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-lg;
+  }
+
+  // Disabled state
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  // Icon button
+  &--icon {
+    padding: $spacing-sm;
+    border-radius: $border-radius-full;
+    
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+} 

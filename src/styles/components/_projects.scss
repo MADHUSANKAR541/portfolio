@@ -1,0 +1,298 @@
+.projects {
+  &__title {
+    @include heading-1;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -$spacing-md;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: $gradient-primary;
+      border-radius: $border-radius-full;
+    }
+  }
+
+  &__filters {
+    @include flex(row, center, center);
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+    flex-wrap: wrap;
+    padding: $spacing-md;
+    @include glass-effect;
+    border-radius: $border-radius-lg;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+    margin-top: $spacing-2xl;
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include respond-to(lg) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+.filter-button {
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: $text-primary;
+  border-radius: $border-radius-full;
+  cursor: pointer;
+  @include transition;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $gradient-primary;
+    opacity: 0;
+    @include transition(opacity);
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    &::before {
+      opacity: 0.1;
+    }
+  }
+
+  &.active {
+    background: $gradient-primary;
+    box-shadow: $shadow-glow;
+    transform: translateY(-2px);
+  }
+}
+
+.project-card {
+  @include hover-lift;
+  overflow: hidden;
+  border-radius: $border-radius-lg;
+  position: relative;
+  background: rgba(20, 20, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: $spacing-lg;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  @include transition(box-shadow, transform);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $gradient-primary;
+    opacity: 0;
+    @include transition(opacity);
+    z-index: 0;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 0.05;
+    }
+  }
+
+  &__image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: $border-radius-md;
+    margin-bottom: $spacing-md;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      @include transition(transform);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8));
+      opacity: 0;
+      @include transition(opacity);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    @include flex(column, center, center);
+    opacity: 0;
+    @include transition(opacity);
+    z-index: 2;
+  }
+
+  &__links {
+    @include flex(row, center, center);
+    gap: $spacing-md;
+  }
+
+  &__content {
+    padding: $spacing-xl;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__category {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    background: rgba(0, 242, 254, 0.1);
+    color: $primary-color;
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-sm;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-sm;
+    @include gradient-text;
+    font-weight: 600;
+  }
+
+  &__description {
+    color: $text-secondary;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+  }
+
+  &__technologies {
+    @include flex(row, flex-start, center);
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+  }
+
+  &:hover {
+    .project-card__overlay {
+      opacity: 1;
+    }
+
+    .project-card__image {
+      img {
+        transform: scale(1.1);
+      }
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.project-link {
+  padding: $spacing-sm $spacing-lg;
+  background: $gradient-primary;
+  color: $text-primary;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  @include transition;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    @include transition(transform);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow;
+
+    &::before {
+      transform: translateX(0);
+    }
+  }
+}
+
+.technology-tag {
+  padding: $spacing-xs $spacing-sm;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: $border-radius-full;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  @include transition;
+
+  &:hover {
+    background: rgba(0, 242, 254, 0.1);
+    color: $primary-color;
+    transform: translateY(-2px);
+  }
+}
+
+// Responsive adjustments
+@include respond-to(sm) {
+  .projects {
+    &__grid {
+      gap: $spacing-lg;
+    }
+    .project-card {
+      padding: $spacing-md;
+      font-size: $font-size-base;
+      .project-card__title {
+        font-size: $font-size-lg;
+      }
+      .project-card__description {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+} 

@@ -1,0 +1,165 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  background: rgba(10, 20, 30, 0.7); /* Default lower opacity */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.15);
+  padding: 0;
+  border-bottom: 1px solid rgba(0,242,254,0.15);
+  transition: background 0.3s ease; /* Smooth transition for background */
+
+  &:hover:not(.navigation--scrolled) {
+    background: rgba(10, 20, 30, 0.95); /* Higher opacity on hover before scrolling */
+  }
+
+  &.navigation--scrolled {
+    background: rgba(10, 20, 30, 0.95); /* Full opacity when scrolled */
+  }
+
+  // Ensure mobile dropdown background is always opaque when open
+  &.navigation--mobile-open {
+    background: rgba(10, 20, 30, 0.95); // Keep full background for mobile menu overlay
+
+    .navigation__mobile-dropdown {
+       background: rgba(10, 20, 30, 0.98); // Ensure dropdown itself is opaque
+    }
+  }
+
+  &__container {
+    @include container;
+    @include flex(row, space-between, center);
+    height: 100%;
+  }
+
+  &__logo {
+    font-family: $font-primary;
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    @include gradient-text;
+    @include hover-lift;
+  }
+
+  &__list--desktop {
+    @include flex(row, flex-end, center);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: $spacing-lg;
+
+    // Show nav list on screens >= md
+    display: none; // Hide by default on small screens
+    @include respond-to(md) {
+      display: flex; // Show on screens >= md
+    }
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    color: $text-primary !important;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: $spacing-xs $spacing-sm;
+    @include transition(color);
+    position: relative;
+    z-index: 2;
+
+    &:hover {
+      color: $primary-color !important;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $gradient-primary;
+      transition: width $transition-base;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  // Mobile menu toggle
+  &__mobile-toggle {
+    // Show toggle on screens < md
+    display: block; // Show by default on small screens
+    background: none;
+    border: none;
+    color: $text-primary;
+    cursor: pointer;
+    padding: $spacing-xs;
+    font-size: $font-size-2xl;
+
+    @include respond-to(md) {
+      display: none; // Hide on screens >= md
+    }
+  }
+
+  // Mobile Dropdown Menu
+  &__mobile-dropdown {
+    position: absolute;
+    top: 80px; // Position below the fixed header
+    left: 0;
+    width: 100%;
+    background: rgba(10, 20, 30, 0.98); // Slightly more opaque background
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 16px 16px 0 rgba(0,0,0,0.15);
+    padding: $spacing-lg 0;
+    border-bottom: 1px solid rgba(0,242,254,0.15);
+    z-index: 999; // Below the main fixed header but above content
+    overflow-y: auto; // Allow scrolling if menu is long
+    max-height: calc(100vh - 80px); // Prevent menu from exceeding screen height below header
+
+    @include respond-to(md) {
+      display: none; // Hide the mobile dropdown on screens >= md
+    }
+  }
+
+  &__list--mobile {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @include flex(column, flex-start, center); // Stack links vertically
+    
+    .navigation__item {
+      width: 100%;
+      text-align: center;
+      margin-bottom: $spacing-sm; // Add space between stacked links
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .navigation__link {
+      padding: $spacing-md $spacing-lg; // Increase padding for easier tapping
+      font-size: $font-size-base; // Make font size larger for readability
+      width: 100%;
+      display: block; // Make the whole link area tappable
+      text-decoration: none; // Remove underline
+
+      &::after {
+        display: none; // Hide the underline animation on mobile links
+      }
+
+      &:hover {
+        background-color: rgba(0, 242, 254, 0.05); // Subtle hover effect
+      }
+    }
+  }
+} 

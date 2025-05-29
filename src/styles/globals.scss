@@ -1,0 +1,193 @@
+@import 'variables';
+@import 'mixins';
+
+// Reset and base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-secondary;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $text-primary;
+  background-color: $background-dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-primary;
+  margin-bottom: $spacing-md;
+  line-height: 1.2;
+}
+
+h1 { @include heading-1; }
+h2 { @include heading-2; }
+h3 { @include heading-3; }
+
+p {
+  @include body-text;
+  margin-bottom: $spacing-md;
+}
+
+// Links
+a {
+  color: $primary-color;
+  text-decoration: none;
+  @include animated-border;
+  @include transition(color);
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-xl;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Container
+.container {
+  @include container;
+}
+
+// Section
+.section {
+  padding: $spacing-3xl 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+// Grid
+.grid {
+  @include grid(1, $spacing-xl);
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+// Spacing utilities
+.mt-1 { margin-top: $spacing-xs; }
+.mt-2 { margin-top: $spacing-sm; }
+.mt-3 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+.mt-5 { margin-top: $spacing-xl; }
+
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-5 { margin-bottom: $spacing-xl; }
+
+// Animation classes
+.fade-in {
+  @include fade-in;
+}
+
+.slide-up {
+  @include slide-up;
+}
+
+.scale-in {
+  @include scale-in;
+}
+
+// Glass effect
+.glass {
+  @include glass-effect;
+}
+
+// Gradient text
+.gradient-text {
+  @include gradient-text;
+}
+
+// Responsive utilities
+.hide-sm {
+  @include respond-to(sm) {
+    display: none;
+  }
+}
+
+.show-sm {
+  display: none;
+  @include respond-to(sm) {
+    display: block;
+  }
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $background-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: $border-radius-full;
+  
+  &:hover {
+    background: $secondary-color;
+  }
+}
+
+// Import component styles
+@import 'components/navigation';
+@import 'components/hero';
+@import 'components/about';
+@import 'components/skills';
+@import 'components/projects';
+@import 'components/experience';
+@import 'components/achievements';
+@import 'components/certifications';
+@import 'components/education';
+@import 'components/contact';
+@import 'components/footer';
+
+// Main content padding for fixed navigation
+main {
+  padding-top: 100px; // Increased padding
+  scroll-padding-top: 100px; // Increased scroll padding
+} 

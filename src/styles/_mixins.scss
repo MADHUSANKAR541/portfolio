@@ -1,0 +1,200 @@
+// Flexbox
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Grid
+@mixin grid($columns: 1, $gap: $spacing-md) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+  @else if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) { @content; }
+  }
+}
+
+// Glass effect
+@mixin glass-effect {
+  background: $glass-background;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: 1px solid $glass-border;
+  box-shadow: $glass-shadow;
+}
+
+// Gradient text
+@mixin gradient-text {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+// Hover lift effect
+@mixin hover-lift {
+  transition: transform $transition-base;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+// Glow effect
+@mixin glow-effect {
+  box-shadow: $shadow-glow;
+  transition: box-shadow $transition-base;
+  &:hover {
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+  }
+}
+
+// Animated border
+@mixin animated-border {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $gradient-primary;
+    transition: width $transition-base;
+  }
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// Fade in animation
+@mixin fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s $transition-base forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Slide up animation
+@mixin slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.5s $transition-base forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Scale animation
+@mixin scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: scaleIn 0.5s $transition-bounce forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Typography
+@mixin heading-1 {
+  font-family: $font-primary;
+  font-size: $font-size-5xl;
+  font-weight: 700;
+  line-height: 1.1;
+  @include gradient-text;
+}
+
+@mixin heading-2 {
+  font-family: $font-primary;
+  font-size: $font-size-4xl;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@mixin heading-3 {
+  font-family: $font-primary;
+  font-size: $font-size-3xl;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+@mixin body-text {
+  font-family: $font-secondary;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $text-secondary;
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include respond-to(lg) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// Transitions
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+// Button styles
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-md;
+  font-weight: 500;
+  @include transition;
+  cursor: pointer;
+}
+
+// Card styles
+@mixin card-base {
+  background-color: $background-color;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: $spacing-lg;
+} 

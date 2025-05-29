@@ -1,0 +1,127 @@
+import React from 'react';
+import Navigation from '@/components/common/Navigation';
+
+const projectsData = [
+  {
+    title: 'Taskify',
+    description: 'Full-stack task management application with advanced search capabilities.',
+    technologies: ['React', 'Next.js', 'Elasticsearch'],
+    image: '/images/projects/taskify.jpg',
+    category: 'Full-Stack',
+    link: '#',
+    github: '#'
+  },
+  {
+    title: 'Synesthetic Experience Generator',
+    description: 'Accessibility technology project featuring Web Speech API integration.',
+    technologies: ['JavaScript', 'Web Speech API', 'HTML/CSS'],
+    image: '/images/projects/synesthetic.jpg',
+    category: 'Accessibility',
+    link: '#',
+    github: '#'
+  },
+  {
+    title: 'VCatalyst',
+    description: 'AI-driven startup support platform for entrepreneurs and innovators.',
+    technologies: ['Python', 'AI/ML', 'React'],
+    image: '/images/projects/vcatalyst.jpg',
+    category: 'AI/ML',
+    link: '#',
+    github: '#'
+  },
+  {
+    title: 'GreenShift',
+    description: 'Sustainability platform for carbon monitoring and environmental impact tracking.',
+    technologies: ['React', 'Node.js', 'MongoDB'],
+    image: '/images/projects/greenshift.jpg',
+    category: 'Full-Stack',
+    link: '#',
+    github: '#'
+  },
+  {
+    title: 'LearnX',
+    description: 'Real-time interactive learning platform for enhanced educational experiences.',
+    technologies: ['React.js', 'WebRTC', 'Node.js'],
+    image: '/images/projects/learnx.jpg',
+    category: 'Full-Stack',
+    link: '#',
+    github: '#'
+  },
+  {
+    title: 'Sugarcane AI',
+    description: 'Creative design project utilizing advanced prompt engineering techniques.',
+    technologies: ['Python', 'AI/ML', 'Prompt Engineering'],
+    image: '/images/projects/sugarcane.jpg',
+    category: 'AI/ML',
+    link: '#',
+    github: '#'
+  },
+  {
+    title: 'Hack A Bot',
+    description: 'RPA automation project using UiPath for streamlined business processes.',
+    technologies: ['UiPath', 'RPA', 'Automation'],
+    image: '/images/projects/hackabot.jpg',
+    category: 'Automation',
+    link: '#',
+    github: '#'
+  }
+];
+
+export default function Projects() {
+  return (
+    <>
+      <Navigation />
+      <main>
+        <section className="section projects">
+          <div className="container">
+            <h1 className="projects__title slide-up">Featured Projects</h1>
+            
+            {/* Project Filters */}
+            <div className="projects__filters slide-up" style={{ animationDelay: '0.2s' }}>
+              <button className="filter-button active">All</button>
+              <button className="filter-button">Full-Stack</button>
+              <button className="filter-button">AI/ML</button>
+              <button className="filter-button">Accessibility</button>
+              <button className="filter-button">Automation</button>
+            </div>
+
+            {/* Projects Grid */}
+            <div className="projects__grid">
+              {projectsData.map((project, index) => (
+                <div 
+                  key={project.title} 
+                  className="project-card glass slide-up"
+                  style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                >
+                  <div className="project-card__image">
+                    <img src={project.image} alt={project.title} />
+                    <div className="project-card__overlay">
+                      <div className="project-card__links">
+                        <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
+                          View Project
+                        </a>
+                        <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer">
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="project-card__content">
+                    <span className="project-card__category">{project.category}</span>
+                    <h3 className="project-card__title">{project.title}</h3>
+                    <p className="project-card__description">{project.description}</p>
+                    <div className="project-card__technologies">
+                      {project.technologies.map(tech => (
+                        <span key={tech} className="technology-tag">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+} 

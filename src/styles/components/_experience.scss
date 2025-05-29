@@ -1,0 +1,182 @@
+.experience {
+  &__title {
+    @include heading-1;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -$spacing-md;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: $gradient-primary;
+      border-radius: $border-radius-full;
+    }
+  }
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: $spacing-xl 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: $gradient-primary;
+    opacity: 0.3;
+
+    @include respond-to(md) {
+      left: 50%;
+    }
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: $spacing-2xl;
+    width: 100%;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include respond-to(md) {
+      width: 50%;
+      padding-right: $spacing-2xl;
+      
+      &:nth-child(even) {
+        margin-left: auto;
+        padding-right: 0;
+        padding-left: $spacing-2xl;
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    padding: $spacing-xl;
+    border-radius: $border-radius-lg;
+    @include hover-lift;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background: $gradient-primary;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      box-shadow: $shadow-glow;
+
+      @include respond-to(md) {
+        right: -$spacing-xl;
+      }
+    }
+
+    @include respond-to(md) {
+      .timeline__item:nth-child(even) & {
+        &::before {
+          right: auto;
+          left: -$spacing-xl;
+        }
+      }
+    }
+  }
+
+  &__period {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    background: rgba(0, 242, 254, 0.1);
+    color: $primary-color;
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__company {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-xs;
+    @include gradient-text;
+  }
+
+  &__role {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    margin-bottom: $spacing-md;
+    font-weight: 500;
+  }
+
+  &__description {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 $spacing-lg 0;
+
+    li {
+      position: relative;
+      padding-left: $spacing-lg;
+      margin-bottom: $spacing-sm;
+      color: $text-secondary;
+      line-height: 1.6;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 6px;
+        height: 6px;
+        background: $primary-color;
+        border-radius: 50%;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__technologies {
+    @include flex(row, flex-start, center);
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+  }
+}
+
+// Responsive adjustments
+@include respond-to(md) {
+  .timeline {
+    &__item {
+      &:nth-child(odd) {
+        .timeline__content {
+          text-align: right;
+
+          .timeline__description li {
+            padding-left: 0;
+            padding-right: $spacing-lg;
+
+            &::before {
+              left: auto;
+              right: 0;
+            }
+          }
+
+          .timeline__technologies {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+} 

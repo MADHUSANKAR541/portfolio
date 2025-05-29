@@ -1,0 +1,108 @@
+.skills {
+  &__title {
+    @include heading-1;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__section {
+    margin-bottom: $spacing-3xl;
+
+    h2 {
+      margin-bottom: $spacing-xl;
+    }
+  }
+
+  &__grid {
+    @include grid(1, $spacing-lg);
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.skill-card {
+  padding: $spacing-lg;
+  @include hover-lift;
+  @include transition;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-glow;
+  }
+
+  &__header {
+    @include flex(row, space-between, center);
+    margin-bottom: $spacing-md;
+
+    h3 {
+      font-size: $font-size-lg;
+      margin: 0;
+    }
+  }
+
+  &__category {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    background: rgba(0, 242, 254, 0.1);
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-full;
+  }
+
+  &__progress {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-full;
+    overflow: hidden;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__progress-bar {
+    height: 100%;
+    background: $gradient-primary;
+    border-radius: $border-radius-full;
+    transition: width 1s $transition-bounce;
+  }
+
+  &__level {
+    text-align: right;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+  }
+}
+
+.expertise-grid {
+  @include grid(1, $spacing-lg);
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.expertise-card {
+  padding: $spacing-xl;
+  @include hover-lift;
+  @include transition;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-glow;
+  }
+
+  h3 {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-md;
+    @include gradient-text;
+  }
+
+  p {
+    color: $text-secondary;
+    margin: 0;
+    line-height: 1.6;
+  }
+} 
